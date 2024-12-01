@@ -2,6 +2,7 @@
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ListsOfNumbers {
     private ArrayList<Integer> left;
@@ -33,5 +34,18 @@ public class ListsOfNumbers {
             dif += abs((int)leftA[i] - (int)rightA[i]);
         }
         return dif;
+    }
+
+    public long similarity() {
+        long similarity = 0;
+
+        for (int i=0; i<left.size(); i++) {
+            int n = left.get(i);
+
+            System.out.println(n + " " + Collections.frequency(right,n));
+
+            similarity += n * Collections.frequency(right,n);
+        }
+        return similarity;
     }
 }

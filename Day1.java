@@ -1,14 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import static java.lang.Integer.parseInt;
 import java.util.*;
 
 public class Day1 {
 
     private long difference;
-    private ListsOfNumbers part1List;
+    private final ListsOfNumbers numbers;
 
     public Day1() {
-        part1List = new ListsOfNumbers();
+        numbers = new ListsOfNumbers();
         difference = 0;
     }
 
@@ -27,8 +28,8 @@ public class Day1 {
                 String line = scanner.nextLine();
                 //System.out.println(line);
 
-                part1List.addLeft(Integer.valueOf(line.substring(0,5)));
-                part1List.addRight(Integer.valueOf(line.substring(8,13)));
+                numbers.addLeft(Integer.parseInt(line.substring(0,5)));
+                numbers.addRight(parseInt(line.substring(8,13)));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -36,10 +37,14 @@ public class Day1 {
     }
 
     public void calculateDifference() {
-        difference = part1List.diff();
+        difference = numbers.diff();
     }
 
     public long getDifference() {
         return difference;
+    }
+
+    public long calculateSimilarity() {
+        return numbers.similarity();
     }
 }
