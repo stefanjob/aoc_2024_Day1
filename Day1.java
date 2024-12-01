@@ -4,8 +4,12 @@ import java.util.*;
 
 public class Day1 {
 
-    public void Day1() {
+    private long difference;
+    private ListsOfNumbers part1List;
 
+    public Day1() {
+        part1List = new ListsOfNumbers();
+        difference = 0;
     }
 
     public void loadInput(boolean full) {
@@ -13,7 +17,7 @@ public class Day1 {
             Scanner scanner = null;
 
             if (full) {
-                scanner = new Scanner(new File("input.txt"));
+                scanner = new Scanner(new File("input.full.txt"));
             }
             else {
                 scanner = new Scanner(new File("input.test.txt"));
@@ -21,10 +25,21 @@ public class Day1 {
             while (scanner.hasNextLine()) {
 
                 String line = scanner.nextLine();
-                System.out.println(line);
+                //System.out.println(line);
+
+                part1List.addLeft(Integer.valueOf(line.substring(0,5)));
+                part1List.addRight(Integer.valueOf(line.substring(8,13)));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void calculateDifference() {
+        difference = part1List.diff();
+    }
+
+    public long getDifference() {
+        return difference;
     }
 }
